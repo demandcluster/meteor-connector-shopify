@@ -1,13 +1,10 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlug } from "@fortawesome/free-solid-svg-icons";
+import { registerOperatorRoute } from "/imports/client/ui";
 import "./templates";
 
 registerOperatorRoute({
-  isNavigationLink: true,
-  isSetting: true,
+  isNavigationLink: false,
+  isSetting: false,
   mainComponent: "connectorSettings",
-  path: "/connector-settings",
-  // eslint-disable-next-line react/display-name
-  SidebarIconComponent: (props) => <FontAwesomeIcon icon={faPlug} {...props} />,
-  sidebarI18nLabel: "reaction-shipping.admin.dashboard.shippingLabel"
+  path: "/settings/connectors"
 });
+
