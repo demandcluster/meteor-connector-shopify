@@ -324,7 +324,6 @@ export const methods = {
             saveImage(shopifyProduct.image.src, {
               ownerId: Meteor.userId(),
               productId: reactionProductId,
-              variantId: reactionProductId,
               shopId,
               priority: 0,
               toGrid: 1
@@ -337,10 +336,9 @@ export const methods = {
                 saveImage(productImage.src, {
                   ownerId: Meteor.userId(),
                   productId: reactionProductId,
-                  variantId: reactionProductId,
                   shopId,
                   priority: productImage.position, // Shopify index positions starting at 1.
-                  toGrid: 0
+                  toGrid: 1
                 });
               }
             }
