@@ -321,7 +321,8 @@ export const methods = {
             ids.push(reactionProductId);
 
             // Save the primary image to the grid and as priority 0
-            saveImage(shopifyProduct.image.src, {
+            const primaryImage = {src: null, ...shopifyProduct.image}
+            saveImage(primaryImage.src, {
               ownerId: Meteor.userId(),
               productId: reactionProductId,
               shopId,
