@@ -85,6 +85,8 @@ function createReactionProductFromShopifyProduct(options) {
  */
 function createReactionVariantFromShopifyVariant(options) {
   const { shopifyVariant, variant, index, ancestors, shopId } = options;
+  const inventoryInStock = shopifyVariant.inventory_quantity >= 0 ? shopifyVariant.inventory_quantity : 0;
+
   const reactionVariant = {
     ancestors,
     barcode: shopifyVariant.barcode,
@@ -94,7 +96,8 @@ function createReactionVariantFromShopifyVariant(options) {
     index,
     inventoryManagement: true,
     inventoryPolicy: shopifyVariant.inventory_policy === "deny",
-    inventoryQuantity: shopifyVariant.inventory_quantity >= 0 ? shopifyVariant.inventory_quantity : 0,
+    inventoryInStock,
+    inventoryAvailableToSell: inventoryInStock,
     isDeleted: false,
     isVisible: true,
     length: 0,
@@ -338,7 +341,7 @@ export const methods = {
                   ownerId: Meteor.userId(),
                   productId: reactionProductId,
                   shopId,
-                  priority: productImage.position, // Shopify index positions starting at 1.
+                  priority: productImage.position-1, // Shopify index positions starting at 1.
                   toGrid: 1
                 });
               }
